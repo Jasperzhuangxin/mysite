@@ -60,8 +60,3 @@ def hours_ahead(request, offset):
 
 
 
-
-
-
-
-
