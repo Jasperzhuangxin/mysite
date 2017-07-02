@@ -2,17 +2,37 @@
 
 from django.shortcuts import render
 # from django.template.loader import get_template
-# from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse
 # from django.template import Template, Context
 import datetime
 
 
 
-# def hello(request):
-# 	return HttpResponse("Hello World!")
-
 def hello(request):
-	return render(request,"Hello World!")
+	return HttpResponse("Welcome the Page at %s  %s  %s  %s." % (request.path,request.get_host(), request.get_full_path(), request.is_secure() ) )
+
+# def hi(request):
+# 	try:
+# 		ua = request.META['HTTP_USER_AGENT']
+# 	except KeyError:
+# 		ua = 'unknown'
+# 	return HttpResponse("Your browser is %s" % ua)
+
+
+# def hi(request):
+# 	ua = request.META.get('HTTP_USER_AGENT', 'unknown')
+# 	return HttpResponse("Your browser is %s" % ua)
+
+def hi(request):
+	values = request.META
+	html = []
+	for k in sorted(values):
+		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, values[k]))
+	return HttpResponse("<table>%s</table>" % '\n'.join(html))
+
+
+# def hello(request):
+# 	return render(request,"Hello World!")
 
 # def current_datetime(request):
 # 	now = datetime.datetime.now()
