@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from mysite.views import hello, current_datetime, hours_ahead, hi, contact
-
+from mysite.views import hello, current_datetime, hours_ahead, hi, contact, thanks, display_meta
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,6 +27,8 @@ urlpatterns = [
 
     url(r'^contact/$', contact),
     url(r'^', include('books.urls')),
+    url(r'^contact.thanks/$', thanks),
+    url(r'^meta/$', display_meta)
 
 
 ]

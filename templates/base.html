@@ -1,10 +1,15 @@
-
-{% include "header.html" %}
-	<title>{% block title %}{% endblock%}</title>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-	<h1>My helpful timestamp site</h1>
-	{% block content %}{% endblock %}
+    <h1>The Django Book</h1>
+    {% block content %}{% endblock %}
 
-{% include "footer.html" %}
-
+    {% block footer %}
+    <hr>
+    <p>Thanks for visiting my site.</p>
+    {% endblock %}
+</body>
+</html>

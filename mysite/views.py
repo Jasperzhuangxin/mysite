@@ -87,7 +87,7 @@ def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
-			cd = form.cleaned_date
+			cd = form.cleaned_data
 			con = get_connection('django.core.mail.backends.console.EmailBackend')
 			send_mail(
 				cd['subject'],
@@ -96,10 +96,30 @@ def contact(request):
 				['jasper.wang@163.com'],
 				connection=con
 			)
-			return HttpResponseRedirect('/contact/thanks/')
+			# return HttpResponse('ABC')
+			return HttpResponseRedirect('/contact/thanks')
 	else:
 		form = ContactForm()
 	return render(request, 'contact_form.html', {'form': form})
+
+
+def thanks(request):
+	return HttpResponse("I don't know!")
+
+
+# def display_meta(request):
+# 	values = request.META
+# 	html = []
+# 	for k in sorted(values):
+# 		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, values[k]))
+# 	return HttpResponse('<table>%s</table>' % '\n'.join(html))
+
+def display_meta(request):
+	values = request.META.items()
+	# v = values
+	#  v = sorted(values, reverse = False)
+	v = sorted(values, key=lambda values:values[0])
+	return render(request, 'display_meta.html', {'values': v})
 
 
 
